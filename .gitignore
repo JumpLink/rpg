@@ -94,3 +94,7 @@ $RECYCLE.BIN/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Tests
+test/.tmp/*
+!.gitkeep
