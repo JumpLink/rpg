@@ -1,6 +1,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = (env = {}) => {
   // OPTIMIZATION
@@ -8,6 +9,9 @@ module.exports = (env = {}) => {
   const optimization = {
     minimize: false,
     minimizer: [],
+    splitChunks: {
+      chunks: "all",
+    },
   };
 
   if (!env.production) {
@@ -29,6 +33,11 @@ module.exports = (env = {}) => {
     new HtmlWebPackPlugin({
       title: "Excalibur Webpack Sample",
     }),
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        files: "./src/**/*.ts",
+      },
+    }),
   ];
 
   if (!env.production) {
@@ -37,12 +46,12 @@ module.exports = (env = {}) => {
   }
 
   return {
-    optimization,
     mode: env.production ? "production" : "development",
     devtool: env.production ? "source-map" : "inline-source-map",
     devServer: {
       contentBase: "./dist",
     },
+    context: __dirname, // to automatically find tsconfig.json
     entry: "./src/index.ts",
     target: "web",
     output: {
@@ -65,19 +74,19 @@ module.exports = (env = {}) => {
         },
         {
           test: /\.tsx?$/,
-          use: "ts-loader",
+          loader: "ts-loader",
           exclude: /node_modules/,
+          options: {
+            // disable type checker - we will use it in fork plugin
+            transpileOnly: true,
+          },
         },
       ],
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
-    optimization: {
-      splitChunks: {
-        chunks: "all",
-      },
-    },
+    optimization,
     plugins,
   };
 };
