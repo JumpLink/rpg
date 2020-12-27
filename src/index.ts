@@ -1,7 +1,7 @@
-import { Engine, Loader, DisplayMode } from 'excalibur';
-import { LevelOne } from './scenes/level-one/level-one';
-import { Player } from './actors/player/player';
-import { Resources } from './resources';
+import { Engine, Loader, DisplayMode } from "excalibur";
+import { LevelOne } from "./scenes/level-one/level-one";
+import { Player } from "./actors/player/player";
+import { Resources } from "./resources";
 
 /**
  * Managed game class
@@ -15,13 +15,12 @@ class Game extends Engine {
   }
 
   public start() {
-
     // Create new scene with a player
     this.levelOne = new LevelOne(this);
     this.player = new Player();
     this.levelOne.add(this.player);
 
-    game.add('levelOne', this.levelOne);
+    game.add("levelOne", this.levelOne);
 
     // Automatically load all default resources
     const loader = new Loader(Object.values(Resources));
@@ -32,5 +31,5 @@ class Game extends Engine {
 
 const game = new Game();
 game.start().then(() => {
-  game.goToScene('levelOne');
+  game.goToScene("levelOne");
 });

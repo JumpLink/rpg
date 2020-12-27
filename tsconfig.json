@@ -4,7 +4,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "target": "es5",
-    "module": "es6",
+    "lib": ["ESNext", "DOM"],
+    "module": "esnext",
     "sourceMap": true,
     "outDir": "./dist/"
   }

@@ -5,33 +5,40 @@
   "description": "a webpack starter for excaliburjs projects",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix && tsc --noEmit",
     "test": "npm run build:prod && node ./test/test.js",
     "webpack": "webpack",
-    "dev": "webpack serve --config webpack.development.js",
-    "start": "npm run dev",
-    "build:dev": "webpack --config webpack.development.js",
-    "build:prod": "webpack --config webpack.production.js"
+    "start": "webpack serve --env development",
+    "build:dev": "webpack --env development",
+    "build:prod": "webpack --env production"
   },
   "author": "Excalibur.js Team",
   "license": "BSD-2-Clause",
   "devDependencies": {
+    "@ribajs/eslint-config": "^1.9.0-beta.4",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
     "clean-webpack-plugin": "3.0.0",
     "compression-webpack-plugin": "7.1.1",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
     "html-webpack-plugin": "4.5.0",
     "node-static": "0.7.11",
     "pixelmatch": "5.2.1",
     "pngjs": "6.0.0",
+    "prettier": "latest",
     "puppeteer": "5.5.0",
-    "source-map-loader": "1.1.3",
+    "source-map-loader": "2.0.0",
+    "terser-webpack-plugin": "5.0.3",
     "ts-loader": "8.0.12",
     "typescript": "4.1.3",
-    "terser-webpack-plugin": "5.0.3",
     "webpack": "5.11.0",
     "webpack-cli": "4.3.0",
     "webpack-dev-server": "3.11.0",
     "webpack-merge": "5.7.3"
   },
   "dependencies": {
-    "excalibur": "0.24.5"
+    "@yarnpkg/pnpify": "^2.4.0",
+    "excalibur": "^0.24.5"
   }
 }
