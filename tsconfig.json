@@ -1,12 +1,13 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "target": "es5",
-    "lib": ["ESNext", "DOM"],
-    "module": "esnext",
-    "sourceMap": true,
-    "outDir": "./dist/"
-  }
+   "compilerOptions": {
+     "allowSyntheticDefaultImports": true,
+     "esModuleInterop": true,
+     "moduleResolution": "node",
+     "target": "es5",
+     "lib": ["ESNext", "DOM"],
+     "module": "esnext",
+     "sourceMap": true,
+     "outDir": "./dist/"
+   }
 }
+ 

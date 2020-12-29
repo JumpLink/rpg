@@ -1,7 +1,7 @@
 import { Engine, Loader, DisplayMode } from "excalibur";
+import { Resources } from "./resources";
 import { LevelOne } from "./scenes/level-one/level-one";
 import { Player } from "./actors/player/player";
-import { Resources } from "./resources";
 
 /**
  * Managed game class

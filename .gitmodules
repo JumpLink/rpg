@@ -1,0 +1,6 @@
+[submodule "packages/excalibur"]
+	path = packages/excalibur
+	url = https://github.com/JumpLink/Excalibur.git
+[submodule "packages/tiled"]
+	path = packages/tiled
+	url = https://github.com/JumpLink/excalibur-tiled.git

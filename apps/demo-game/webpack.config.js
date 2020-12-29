@@ -67,6 +67,11 @@ module.exports = (env = {}) => {
           type: "asset/resource",
         },
         {
+          test: /\.json$/,
+          use: "file-loader",
+          type: "javascript/auto",
+        },
+        {
           test: /\.js$/,
           use: ["source-map-loader"],
           exclude: [path.resolve(__dirname, "node_modules/excalibur")],
