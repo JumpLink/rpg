@@ -1,7 +1,8 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = (env = {}) => {
   // OPTIMIZATION
@@ -10,12 +11,12 @@ module.exports = (env = {}) => {
     minimize: false,
     minimizer: [],
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
     },
   };
 
-  if (!env.production) {
-    const TerserPlugin = require("terser-webpack-plugin");
+  if (env.production) {
+    const TerserPlugin = require('terser-webpack-plugin');
     const terser = new TerserPlugin({
       terserOptions: {
         format: {
@@ -23,7 +24,8 @@ module.exports = (env = {}) => {
         },
       },
     });
-    (optimization.minimize = true), optimization.minimizer.push(terser);
+    optimization.minimize = true;
+    optimization.minimizer.push(terser);
   }
 
   // PLUGINS
@@ -31,55 +33,64 @@ module.exports = (env = {}) => {
   const plugins = [
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
-      title: "Excalibur Webpack Sample",
+      title: 'Excalibur Webpack Sample',
     }),
     new ForkTsCheckerWebpackPlugin({
       eslint: {
-        files: "./src/**/*.ts",
+        files: './src/**/*.ts',
       },
+    }),
+    // fix "process is not defined" error:
+    // (do "npm install process" before running the build)
+    new webpack.ProvidePlugin({
+      process: require.resolve('process/browser'),
     }),
   ];
 
-  if (!env.production) {
-    const CompressionWebpackPlugin = require("compression-webpack-plugin");
+  if (env.production) {
+    const CompressionWebpackPlugin = require('compression-webpack-plugin');
     plugins.push(new CompressionWebpackPlugin());
   }
 
   return {
-    mode: env.production ? "production" : "development",
-    devtool: env.production ? "source-map" : "inline-source-map",
+    mode: env.production ? 'production' : 'development',
+    devtool: env.production ? 'source-map' : 'inline-source-map',
     devServer: {
-      contentBase: "./dist",
+      contentBase: './dist',
     },
     context: __dirname, // to automatically find tsconfig.json
-    entry: "./src/index.ts",
-    target: "web",
+    entry: './src/index.ts',
+    target: 'web',
     output: {
-      filename: "[name].js",
-      sourceMapFilename: "[file].map",
-      path: path.resolve(__dirname, "dist"),
+      filename: '[name].js',
+      sourceMapFilename: '[file].map',
+      path: path.resolve(__dirname, 'dist'),
     },
 
     module: {
       rules: [
         {
+          test: /\.css$/,
+          use: ['css-loader'],
+        },
+        {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: "asset/resource",
+          type: 'asset/resource',
         },
         {
           test: /\.json$/,
-          use: "file-loader",
-          type: "javascript/auto",
+          use: 'file-loader',
+          type: 'javascript/auto',
         },
         {
           test: /\.js$/,
-          use: ["source-map-loader"],
-          exclude: [path.resolve(__dirname, "node_modules/excalibur")],
-          enforce: "pre",
+          use: ['source-map-loader'],
+          exclude: [path.resolve(__dirname, 'node_modules/excalibur')],
+          enforce: 'pre',
         },
         {
           test: /\.tsx?$/,
-          loader: "ts-loader",
+          loader: 'ts-loader',
           exclude: /node_modules/,
           options: {
             // disable type checker - we will use it in fork plugin
@@ -89,7 +100,7 @@ module.exports = (env = {}) => {
       ],
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
+      extensions: ['.tsx', '.ts', '.js'],
     },
     optimization,
     plugins,

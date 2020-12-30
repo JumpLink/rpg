@@ -8,6 +8,7 @@
     "test": "npm run build:prod && node ./test/test.js",
     "webpack": "webpack",
     "start": "webpack serve --env development",
+    "build": "npm run build:dev",
     "build:dev": "webpack --env development",
     "build:prod": "webpack --env production"
   },
@@ -19,6 +20,7 @@
     "@typescript-eslint/parser": "^4.11.1",
     "clean-webpack-plugin": "3.0.0",
     "compression-webpack-plugin": "7.1.1",
+    "css-loader": "^5.0.1",
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.0",
@@ -28,6 +30,7 @@
     "pixelmatch": "5.2.1",
     "pngjs": "6.0.0",
     "prettier": "^2.2.1",
+    "process": "^0.11.10",
     "puppeteer": "5.5.0",
     "source-map-loader": "2.0.0",
     "terser-webpack-plugin": "5.0.3",

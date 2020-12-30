@@ -1,5 +1,5 @@
-import { Scene } from "excalibur";
-import { Resources } from "../../resources";
+import { Scene } from 'excalibur';
+import { Resources } from '../../resources';
 
 /**
  * Managed scene
