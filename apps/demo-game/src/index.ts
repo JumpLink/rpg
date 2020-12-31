@@ -1,5 +1,6 @@
+import './types/globals';
 import { Engine, Loader, DisplayMode, Logger, LogLevel } from 'excalibur';
-import { Resources, TestLoadTilesets } from './resources';
+import { Resources } from './resources';
 import { LevelOne } from './scenes/level-one/level-one';
 import { Player } from './actors/player/player';
 
@@ -24,8 +25,6 @@ class Game extends Engine {
 
     // Automatically load all default resources
     const loader = new Loader(Object.values(Resources));
-
-    TestLoadTilesets();
 
     return super.start(loader);
   }

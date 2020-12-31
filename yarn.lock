@@ -1527,9 +1527,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@excaliburjs/excalibur-tiled@workspace:packages/tiled":
+"@excaliburjs/excalibur-tiled@workspace:packages/excalibur-tiled":
   version: 0.0.0-use.local
-  resolution: "@excaliburjs/excalibur-tiled@workspace:packages/tiled"
+  resolution: "@excaliburjs/excalibur-tiled@workspace:packages/excalibur-tiled"
   dependencies:
     "@types/pako": 1.0.1
     "@typescript-eslint/eslint-plugin": ^4.11.1
@@ -1775,7 +1775,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rpg/demo-game@workspace:apps/demo-game"
   dependencies:
-    "@excaliburjs/excalibur-tiled": "workspace:packages/tiled"
+    "@excaliburjs/excalibur-tiled": "workspace:packages/excalibur-tiled"
     "@ribajs/eslint-config": ^1.9.0-beta.4
     "@typescript-eslint/eslint-plugin": ^4.11.1
     "@typescript-eslint/parser": ^4.11.1
