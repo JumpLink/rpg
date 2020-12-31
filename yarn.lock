@@ -1771,9 +1771,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rpg/demo-game@workspace:apps/demo-game":
+"@rpg/demo-game@workspace:apps/excalibur-demo-game":
   version: 0.0.0-use.local
-  resolution: "@rpg/demo-game@workspace:apps/demo-game"
+  resolution: "@rpg/demo-game@workspace:apps/excalibur-demo-game"
   dependencies:
     "@excaliburjs/excalibur-tiled": "workspace:packages/excalibur-tiled"
     "@ribajs/eslint-config": ^1.9.0-beta.4
